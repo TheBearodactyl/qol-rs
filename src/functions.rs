@@ -239,6 +239,10 @@ pub fn memoized_fibonacci(n: u64, memo: &mut Vec<Option<u64>>) -> u64 {
     result
 }
 
+fn multiply(x: i32, y: i32) -> i32 {
+    x * y
+}
+
 /// Perform partial application of a binary function.
 ///
 /// # Arguments
@@ -249,10 +253,6 @@ pub fn memoized_fibonacci(n: u64, memo: &mut Vec<Option<u64>>) -> u64 {
 /// # Returns
 ///
 /// A partially applied function that takes the second argument and completes the binary function.
-fn multiply(x: i32, y: i32) -> i32 {
-    x * y
-}
-
 pub fn partial_multiply(y: i32) -> impl Fn(i32) -> i32 {
     move |x| multiply(x, y)
 }
