@@ -1,6 +1,6 @@
 [package]
 name = "qol-rs"
-version = "0.1.21"
+version = "0.1.3"
 edition = "2021"
 description = "Just a collection of qol functions, structs, enums, macros, and type aliases for easier programming in rust"
 license = "Unlicense"
@@ -13,10 +13,12 @@ macros = []
 sae = []
 funcs = []
 type_aliases = []
+generics = []
 
 full = [
   "macros",
   "sae",
   "funcs",
   "type_aliases",
+  "generics"
 ]
