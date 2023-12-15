@@ -54,8 +54,8 @@ pub fn deep_clone_vec<T: Clone>(vec: &Vec<T>) -> Vec<T> {
 ///
 /// A new vector containing the transformed elements.
 pub fn map_with_index<T, F>(vec: Vec<T>, mut f: F) -> Vec<T>
-    where
-        F: FnMut(usize, T) -> T,
+where
+    F: FnMut(usize, T) -> T,
 {
     vec.into_iter().enumerate().map(|(i, x)| f(i, x)).collect()
 }
@@ -97,8 +97,8 @@ pub fn chain_options<T>(options: Vec<Option<T>>) -> Option<Vec<T>> {
 ///
 /// A new vector containing the mapped elements that satisfy the filter.
 pub fn filter_map<T, U, F>(vec: Vec<T>, f: F) -> Vec<U>
-    where
-        F: Fn(T) -> Option<U>,
+where
+    F: Fn(T) -> Option<U>,
 {
     vec.into_iter().filter_map(f).collect()
 }
@@ -110,8 +110,8 @@ pub fn filter_map<T, U, F>(vec: Vec<T>, f: F) -> Vec<U>
 /// * `action` - The action to be debounced.
 /// * `duration` - The duration to wait before executing the debounced action.
 pub fn debounce<F>(action: F, duration: Duration)
-    where
-        F: Fn(),
+where
+    F: Fn(),
 {
     sleep(duration);
     action();
@@ -127,10 +127,10 @@ pub fn debounce<F>(action: F, duration: Duration)
 ///
 /// A new function with memoization.
 pub fn memoize<T, U, F>(func: F) -> impl Fn(T) -> U
-    where
-        F: Fn(T) -> U,
-        T: Eq + Hash + Clone,
-        U: Clone,
+where
+    F: Fn(T) -> U,
+    T: Eq + Hash + Clone,
+    U: Clone,
 {
     let cache: RefCell<HashMap<T, U>> = RefCell::new(HashMap::new());
 
@@ -157,9 +157,9 @@ pub fn memoize<T, U, F>(func: F) -> impl Fn(T) -> U
 ///
 /// Ok(()) if the action succeeds within the specified attempts, otherwise Err with the last encountered error.
 pub fn retry<F, E>(action: F, max_attempts: usize, delay: Duration) -> Result<(), E>
-    where
-        F: Fn() -> Result<(), E>,
-        E: std::fmt::Debug + Clone,
+where
+    F: Fn() -> Result<(), E>,
+    E: std::fmt::Debug + Clone,
 {
     for attempt in 1..=max_attempts {
         match action() {
@@ -184,8 +184,8 @@ pub fn retry<F, E>(action: F, max_attempts: usize, delay: Duration) -> Result<()
 /// * `action` - The action to be throttled.
 /// * `duration` - The minimum duration between consecutive executions of the throttled action.
 pub fn throttle<F>(action: F, duration: Duration)
-    where
-        F: Fn(),
+where
+    F: Fn(),
 {
     let mut last_executed = Instant::now();
     loop {
@@ -207,8 +207,8 @@ pub fn throttle<F>(action: F, duration: Duration)
 ///
 /// Ok(()) if the action completes within the specified timeout, otherwise Err indicating timeout.
 pub fn with_timeout<F>(action: F, timeout: Duration) -> Result<(), &'static str>
-    where
-        F: Fn(),
+where
+    F: Fn(),
 {
     let start_time = Instant::now();
     while start_time.elapsed() < timeout {
