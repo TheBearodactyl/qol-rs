@@ -88,7 +88,7 @@ pub enum BinaryTree<T> {
 }
 
 /// Represents a state machine with different states.
-enum State {
+pub enum State {
     /// The initial state.
     Initial,
     /// The state indicating that a process is in progress.
@@ -98,7 +98,8 @@ enum State {
 }
 
 /// Represents a state machine that transitions between different states.
-struct StateMachine {
+pub struct StateMachine {
     /// The current state of the state machine.
     current_state: State,
 }
+
